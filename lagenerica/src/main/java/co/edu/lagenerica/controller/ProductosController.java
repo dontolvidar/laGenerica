@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import co.edu.lagenerica.model.ProductosDAO;
 import co.edu.lagenerica.model.Productos;
 import co.edu.lagenerica.model.Tutorial;
 import co.edu.lagenerica.repository.ProductoRepository;
@@ -25,4 +26,6 @@ public class ProductosController {
 			    return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 			  }
 	  }
+	
+	
 }
