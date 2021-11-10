@@ -1,0 +1,19 @@
+
+
+
+#botonmenu {
+  width: 240px;
+  color: #000;
+  background-color: hsla(32, 86%, 49%, 0.904);
+  border-color: #cfc9b3;
+  margin-left: 28%;
+  font-weight: 640;
+  line-height: 1.8;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid transparent;
+  padding: 2.3px 12px;
+  font-size: 1rem;
+  border-radius: .60rem;
+  
+}
