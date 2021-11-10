@@ -6,6 +6,19 @@ public class Productos {
 	private String nombre;
 	private long nit_proveedor;
 	private double precio_compra,iva,precio_venta;
+	
+	
+	
+	public Productos(long codigo, String nombre, long nit_proveedor, double precio_compra, double iva,
+			double precio_venta) {
+		super();
+		this.codigo = codigo;
+		this.nombre = nombre;
+		this.nit_proveedor = nit_proveedor;
+		this.precio_compra = precio_compra;
+		this.iva = iva;
+		this.precio_venta = precio_venta;
+	}
 	public long getCodigo() {
 		return codigo;
 	}
