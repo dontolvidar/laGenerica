@@ -1,7 +1,12 @@
 package co.edu.lagenerica.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+
+@Document(collection = "productos")
 public class Productos {
-	
+	@Id
 	private long codigo;
 	private String nombre;
 	private long nit_proveedor;
@@ -9,8 +14,7 @@ public class Productos {
 	
 	
 	
-	public Productos(long codigo, String nombre, long nit_proveedor, double precio_compra, double iva,
-			double precio_venta) {
+	public Productos(long codigo, String nombre, long nit_proveedor, double precio_compra, double iva,double precio_venta) {
 		super();
 		this.codigo = codigo;
 		this.nombre = nombre;
