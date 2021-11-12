@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -48,13 +49,13 @@ public class ProductosController {
 //			  }
 //	  }
 	@PostMapping("/productos")
-	  public ResponseEntity<Productos> createProducto(@RequestBody Productos producto) {
+	  public String createProducto(@RequestBody Productos producto) {
 		  try {
 			  	//(long codigo, String nombre, long nit_proveedor, double precio_compra, double iva,double precio_venta)
 			    Productos _producto = productoRepository.save(new Productos(producto.getCodigo(), producto.getNombre(),producto.getNit_proveedor(),producto.getPrecio_compra(),producto.getIva(),producto.getPrecio_venta()));
-			    return new ResponseEntity<>(_producto, HttpStatus.CREATED);
+			    return "Ha sido enviado";
 			  } catch (Exception e) {
-			    return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+			    return "No ha sido enviado";
 			  }
 	  }
 	
