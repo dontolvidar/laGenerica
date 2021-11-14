@@ -21,7 +21,7 @@ import co.edu.lagenerica.model.Productos;
 import co.edu.lagenerica.model.Tutorial;
 import co.edu.lagenerica.repository.ProductoRepository;
 import co.edu.lagenerica.repository.TutorialRepository;
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
 public class ProductosController {
@@ -48,10 +48,11 @@ public class ProductosController {
 //			  }
 //	  }
 	@PostMapping("/productos")
-	  public ResponseEntity<Productos> createProducto(@RequestBody Productos producto) {
+	  public ResponseEntity<Productos> createProducto(@RequestBody MultipartFile files) {
 		  try {
 			  	//(long codigo, String nombre, long nit_proveedor, double precio_compra, double iva,double precio_venta)
-			    Productos _producto = productoRepository.save(new Productos(producto.getCodigo(), producto.getNombre(),producto.getNit_proveedor(),producto.getPrecio_compra(),producto.getIva(),producto.getPrecio_venta()));
+				  Productos producto=null;  
+				  Productos _producto = productoRepository.save(new Productos(producto.getCodigo(), producto.getNombre(),producto.getNit_proveedor(),producto.getPrecio_compra(),producto.getIva(),producto.getPrecio_venta()));
 			    return new ResponseEntity<>(_producto, HttpStatus.CREATED);
 			  } catch (Exception e) {
 			    return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
