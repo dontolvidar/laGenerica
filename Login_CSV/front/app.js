@@ -29,9 +29,11 @@ app.get("/enviar",(req,res)=>{
 	res.send("Todo mal");
 });
 
-app.post("/enviar",upload.single("files"),(req,res)=>{
-	res.send(req.file);
-});
+app.post('/enviar', upload.array('files'), function (req, res, next) {
+  console.log(req.files[0]);
+	// req.files is array of `photos` files
+  // req.body will contain the text fields, if there were any
+})
 
 /* /* app.post('/registroprod',upload.single('files'),(req,res) => { 
  
@@ -92,6 +94,6 @@ fs.readFile(req, 'utf8' , (err, data) => {
           req.end();
 });  */
 app.listen(3000,() => {
-        console.log('Servidor Inicia puerto 3000');
+        console.log('Servidor Inicia puerto 3001');
 })
 module.exports=app;

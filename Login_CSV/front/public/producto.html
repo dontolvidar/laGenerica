@@ -97,22 +97,22 @@ function enviarDatos(codigo,nombre,nit_proveedor,precio_compra,iva,precio_venta)
 	}
 	
 	
-	document.querySelector("#form").addEventListener("submit",(ev)=>{
-		ev.preventDefault();
-		let file = document.querySelector("#files").files[0];
+// 	document.querySelector("#form").addEventListener("submit",(ev)=>{
+// 		ev.preventDefault();
+// 		let file = document.querySelector("#files").files[0];
 	
-		let formData=new FormData();
-		formData.append("files",file);
+// 		let formData=new FormData();
+// 		formData.append("files",file);
 		
-		fetch("http://localhost:8080/api/productos",{
-			method:"POST",
-			body:formData
-		}).then(
-			r => r.text()
-		).then(data=> alert(data))
-		.catch(err =>console.log(err));
+// 		fetch("http://localhost:8080/api/productos",{
+// 			method:"POST",
+// 			body:formData
+// 		}).then(
+// 			r => r.text()
+// 		).then(data=> alert(data))
+// 		.catch(err =>console.log(err));
 		
-	});
+// 	});
 
 </script>
 </head>
@@ -127,7 +127,7 @@ function enviarDatos(codigo,nombre,nit_proveedor,precio_compra,iva,precio_venta)
 
 
 
-<form method="post" action="http://localhost:8080/api/productos" enctype="multipart/form-data">
+<form method="post" action="/enviar" enctype="multipart/form-data">
 
 Ingresa el archivo:
 
