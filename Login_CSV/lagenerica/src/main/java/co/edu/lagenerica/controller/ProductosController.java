@@ -1,5 +1,12 @@
 package co.edu.lagenerica.controller;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,11 +56,26 @@ public class ProductosController {
 //	  }
 	@PostMapping("/productos")
 	  public ResponseEntity<Productos> createProducto(@RequestBody MultipartFile files) {
-		  try {
-			  	//(long codigo, String nombre, long nit_proveedor, double precio_compra, double iva,double precio_venta)
-				  Productos producto=null;  
-				  Productos _producto = productoRepository.save(new Productos(producto.getCodigo(), producto.getNombre(),producto.getNit_proveedor(),producto.getPrecio_compra(),producto.getIva(),producto.getPrecio_venta()));
-			    return new ResponseEntity<>(_producto, HttpStatus.CREATED);
+		Productos _producto=null;
+			try {
+			  File fl = new File("C:\\ArchivosRecibidos\\" + files.getOriginalFilename());
+			  files.transferTo(fl);
+			  
+			  FileReader fr = new FileReader(fl);
+              BufferedReader br = new BufferedReader(fr);
+              String linea = "";
+              while ((linea = br.readLine()) != null) {
+                  String[] tokens = linea.split(",");
+                //(long codigo, String nombre, long nit_proveedor, double precio_compra, double iva,double precio_venta)
+				  Productos producto = new Productos(Long.parseLong(tokens[0]),(tokens[1]) ,Long.parseLong(tokens[2]),Double.parseDouble(tokens[3]), Double.parseDouble(tokens[4]), Double.parseDouble(tokens[5]));
+                  _producto = productoRepository.save(new Productos(producto.getCodigo(), producto.getNombre(),producto.getNit_proveedor(),producto.getPrecio_compra(),producto.getIva(),producto.getPrecio_venta()));
+              }
+              br.close();
+              fr.close();
+			  	
+				  
+			    
+				return new ResponseEntity<>(_producto, HttpStatus.CREATED);
 			  } catch (Exception e) {
 			    return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 			  }
